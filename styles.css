@@ -348,5 +348,5 @@ margin-right:0.3em ;
 
 #calendar li
 {
-  color: #cc4f4b;
+  cursor: pointer;
 }
