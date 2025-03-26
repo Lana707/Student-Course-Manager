@@ -126,21 +126,18 @@ padding-bottom: 0.5em;
 .course-input-section {
   grid-area: course-input;
   padding: 1em;
-  background-color: #f8f9fa;
   border-top: 1px solid #ddd;
 }
 
 .course-schedule-section {
   grid-area: schedule;
   padding: 1em;
-  background-color: #f8f9fa;
   border-top: 1px solid #ddd;
 }
 
 .grade-calculator-section {
   grid-area: calculator;
   padding: 1em;
-  background-color: #f8f9fa;
   border-top: 1px solid #ddd;
 }
 
