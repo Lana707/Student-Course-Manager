@@ -334,3 +334,15 @@ margin-left: 10em;
   border-radius: 0.3em;
   margin-top: 0.3em;
 }
+
+#add-task-btn:hover 
+{
+  color: #191919;
+  background-color: #aeaeae
+}
+
+#add-task-btn:active 
+{
+  box-shadow: 0 0.1em #666;
+  transform: translateY(0.1em);
+}
