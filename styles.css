@@ -338,13 +338,13 @@ margin-left: 10em;
   margin-bottom: 0.5em;
 }
 
-#add-task-btn:hover 
+#add-task-btn:hover, #prev-month-btn:hover, #next-month-btn:hover 
 {
   color: #191919;
   background-color: #aeaeae
 }
 
-#add-task-btn:active 
+#add-task-btn:active, #prev-month-btn:active, #next-month-btn:active 
 {
   box-shadow: 0 0.1em #666;
   transform: translateY(0.1em);
