@@ -501,18 +501,7 @@ function highlightToday() {
   const month = String(today.getMonth() + 1).padStart(2, "0"); 
   const day = String(today.getDate()).padStart(2, "0");
   const formattedDate = `${year}-${month}-${day}`; 
-// calendar circle
-  const tdElement = document.querySelector(`td[data-date="${formattedDate}"]`);
 
-  if (tdElement) {
-      tdElement.style.border = "0.1em solid #cc4f4b";
-      tdElement.style.borderRadius = "100%";
-      tdElement.style.width = "0.3em";
-      tdElement.style.height = "0.2em";
-      tdElement.style.display = "flex";
-      tdElement.style.justifyContent = "center";      
-      tdElement.style.alignItems = "center"; 
-  }
 
 
 
