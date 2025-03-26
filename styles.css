@@ -333,6 +333,7 @@ margin-left: 10em;
   border: gray solid 0.1em;
   border-radius: 0.3em;
   margin-top: 0.3em;
+  cursor:pointer;
 }
 
 #add-task-btn:hover 
