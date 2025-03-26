@@ -98,6 +98,7 @@ padding-bottom: 0.5em;
   padding: 1em;
   min-height: 500px;
   padding-left: 2em;
+  margin-right: 1em;
 }
 
 #calendar {
@@ -331,6 +332,12 @@ margin-left: 10em;
   border-radius: 0.3em;
   margin-top: 0.3em;
   cursor:pointer;
+}
+
+.calendar-navigation, #month-year-header
+{
+  text-align: right;
+margin-right:0.3em ;
 }
 
 .calendar-navigation
