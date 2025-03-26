@@ -88,10 +88,6 @@ padding-bottom: 0.5em;
   padding-top: 3em;
 }
 
-.task-list-container li::marker
-{
-  content: "-";
-}
 
 .calendar-section {
   grid-area: content;
@@ -255,30 +251,18 @@ button.close:hover, button.close-edit-course:hover, button.close-course-grades:h
   color: red;
 }
 
-.task-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
 .task-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.5em 0;
   border-bottom: 1px solid #eee;
+  padding-left: 0.3em;
 }
+
 
 .task-list li:last-child {
   border-bottom: none;
-}
-
-.task-list li.done span {
-  text-decoration: line-through;
-}
-
-.task-checkbox {
-  margin-right: 10px;
 }
 
 .course-item 
