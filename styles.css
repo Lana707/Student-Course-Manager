@@ -251,7 +251,8 @@ button.close:hover, button.close-edit-course:hover, button.close-course-grades:h
   color: red;
 }
 
-.task-list li {
+.task-list li 
+{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -261,7 +262,8 @@ button.close:hover, button.close-edit-course:hover, button.close-course-grades:h
 }
 
 
-.task-list li:last-child {
+.task-list li:last-child 
+{
   border-bottom: none;
 }
 
@@ -278,17 +280,25 @@ button.close:hover, button.close-edit-course:hover, button.close-course-grades:h
 margin-left: 10em;
 }
 
-.course-item:last-child {
+.course-item:last-child 
+{
   border-bottom: none;
 }
 
-.remove-course-btn {
+.remove-course-btn
+{
   background-color: transparent;
   border: none;
   color: red;
   font-weight: bold;
   cursor: pointer;
   padding-left: 10px;
+}
+
+.remove-task-btn 
+{
+cursor: pointer;
+padding-right: 0.25em;
 }
 
 #task-input, #due-date-input
@@ -301,6 +311,8 @@ margin-left: 10em;
   margin-bottom: 0.3em;
   border: currentColor;
 }
+
+
 
 /* calendar icon in input*/::-webkit-calendar-picker-indicator {
   filter: invert(1)
