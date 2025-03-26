@@ -87,9 +87,9 @@ document.addEventListener('DOMContentLoaded', function() {
   function isDueThisWeek(taskDate) {
     const today = new Date();
     const startOfWeek = new Date(today);
-    startOfWeek.setDate(today.getDate() - today.getDay()); // Start of the week (Sunday)
+    startOfWeek.setDate(today.getDate() - today.getDay());
     const endOfWeek = new Date(today);
-    endOfWeek.setDate(today.getDate() + (6 - today.getDay())); // End of the week (Saturday)
+    endOfWeek.setDate(today.getDate() + (6 - today.getDay()));
     return taskDate >= startOfWeek && taskDate <= endOfWeek && !isDueToday(taskDate);
   }
 
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
   function isDueInThreeWeeks(taskDate) {
     const today = new Date();
     const threeWeeksLater = new Date(today);
-    threeWeeksLater.setDate(today.getDate() + 21); // 21 days later
+    threeWeeksLater.setDate(today.getDate() + 21);
     return taskDate > new Date(today.setDate(today.getDate() + 6)) && taskDate <= threeWeeksLater;
   }
 
@@ -128,10 +128,17 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
           //cells with dates
           const cellDate = new Date(year, month, date);
-          cell.textContent = date;
-          cell.setAttribute('data-date', cellDate.toISOString().split('T')[0]); //data-date attribute
+          cell.innerHTML = '';
+          
+          //create date number element
+          const dateNumber = document.createElement('div');
+          dateNumber.className = 'date-number';
+          dateNumber.textContent = date;
+          cell.appendChild(dateNumber);
+          
+          cell.setAttribute('data-date', cellDate.toISOString().split('T')[0]);
 
-          //tasks for this date
+          //add tasks for this date
           const tasksOnDate = tasks.filter(task => {
             const taskDate = new Date(task.dueDate);
             return (
@@ -164,41 +171,48 @@ document.addEventListener('DOMContentLoaded', function() {
       calendarBody.appendChild(row);
     }
 
-    highlightToday(); //highlightToday after rendering the calendar
+    highlightToday();
   }
 
   //highlight today's date
-function highlightToday() {
-  const today = new Date();
-  const todayDate = today.getDate();
-  const todayMonth = today.getMonth();
-  const todayYear = today.getFullYear();
-
-  const calendarCells = document.querySelectorAll("#calendar td");
-  calendarCells.forEach((cell) => {
-    // Remove any existing today class first
-    cell.classList.remove("today");
+  function highlightToday() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
     
-    if (cell.textContent === todayDate.toString()) 
-      {
-      const cellDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), parseInt(cell.textContent));
-      if (cellDate.getDate() === todayDate && 
-          cellDate.getMonth() === todayMonth && 
-          cellDate.getFullYear() === todayYear) 
-          {
-        cell.classList.add("today");
-        //circle styling
-        cell.style.border = "0.1em solid #cc4f4b";
-        cell.style.borderRadius = "100%";
-        cell.style.width = "0.3em";
-        cell.style.height = "0.2em";
-        cell.style.display = "flex";
-        cell.style.justifyContent = "center";      
-        cell.style.alignItems = "center";
+    const firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+    
+    //clear existing highlights
+    const calendarCells = document.querySelectorAll("#calendar td");
+    calendarCells.forEach(cell => {
+      const dateNumber = cell.querySelector('.date-number');
+      if (dateNumber) {
+        dateNumber.classList.remove("today-highlight");
+        dateNumber.style.border = "";
+        dateNumber.style.borderRadius = "";
       }
+    });
+
+    if (today >= firstDayOfMonth && today <= lastDayOfMonth) {
+      const todayDate = today.getDate();
+      
+      calendarCells.forEach(cell => {
+        const dateNumber = cell.querySelector('.date-number');
+        if (dateNumber && parseInt(dateNumber.textContent) === todayDate) {
+          dateNumber.classList.add("today-highlight");
+          dateNumber.style.border = "2px solid #cc4f4b";
+          dateNumber.style.backgroundColor = "#cc4f4b";
+          dateNumber.style.color = "#2f2f2f";
+          dateNumber.style.borderRadius = "50%";
+          dateNumber.style.width = "1.5em";
+          dateNumber.style.height = "1.5em";
+          dateNumber.style.display = "inline-flex";
+          dateNumber.style.justifyContent = "center";
+          dateNumber.style.alignItems = "center";
+        }
+      });
     }
-  });
-}
+  }
 
   // render task lists
   function renderTaskLists() {
@@ -311,7 +325,7 @@ function highlightToday() {
           editBtn.textContent = 'Edit';
           editBtn.classList.add('edit-course-btn');
           editBtn.addEventListener('click', (event) => {
-            event.stopPropagation(); // prevent the course details modal from opening
+            event.stopPropagation();
             openEditCourseModal(course);
           });
 
@@ -333,7 +347,6 @@ function highlightToday() {
       }
     });
 
-    // update grade course dropdown
     updateGradeCourseDropdown();
   }
 
@@ -392,7 +405,14 @@ function highlightToday() {
     const courseDay = courseDayInput.value;
 
     if (courseName !== '' && courseStartTime !== '' && courseEndTime !== '' && courseLocation !== '') {
-      courses.push({ name: courseName, startTime: courseStartTime, endTime: courseEndTime, location: courseLocation, day: courseDay, grades: [] });
+      courses.push({ 
+        name: courseName, 
+        startTime: courseStartTime, 
+        endTime: courseEndTime, 
+        location: courseLocation, 
+        day: courseDay, 
+        grades: [] 
+      });
       courseNameInput.value = '';
       courseStartTimeInput.value = '';
       courseEndTimeInput.value = '';
@@ -476,15 +496,15 @@ function highlightToday() {
 
   //calendar navigation functionality
   prevMonthBtn.addEventListener('click', () => {
-    currentDate.setMonth(currentDate.getMonth() - 1); //previous month
-    updateMonthYearHeader(); //update month/year header
-    renderCalendar(); 
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    updateMonthYearHeader();
+    renderCalendar();
   });
 
   nextMonthBtn.addEventListener('click', () => {
-    currentDate.setMonth(currentDate.getMonth() + 1); //move to next month
-    updateMonthYearHeader(); //update the month/year header
-    renderCalendar(); 
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    updateMonthYearHeader();
+    renderCalendar();
   });
 
   // render of the calendar, task lists, and course schedule
@@ -493,14 +513,3 @@ function highlightToday() {
   renderCalendar();
   renderCourseSchedule();
 });
-
-
-  // local date format
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0"); 
-  const day = String(today.getDate()).padStart(2, "0");
-  const formattedDate = `${year}-${month}-${day}`; 
-
-
-
-
