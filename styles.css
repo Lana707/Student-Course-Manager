@@ -353,3 +353,7 @@ margin-right:0.3em ;
   transform: translateY(0.1em);
 }
 
+#calendar li
+{
+  color: #cc4f4b;
+}

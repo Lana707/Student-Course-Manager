@@ -168,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   //highlight today's date
-//highlight today's date
 function highlightToday() {
   const today = new Date();
   const todayDate = today.getDate();
