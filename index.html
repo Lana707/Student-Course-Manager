@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/reset.css">
+  <script src="https://kit.fontawesome.com/40f5e188eb.js" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+
+</head>
+<body>
+  <div class="header">
+    <h1>Course Tracker</h1>
+    </div>
+
+  <div class="sidebar">
+
+    <section class="task-input-section">
+      <h2>Add Assignment</h2>
+      <input type="text" id="task-input" placeholder="Task name...">
+      <input type="date" id="due-date-input">
+      <button id="add-task-btn">Add Assignment</button>
+    </section>
+
+    <section class="task-lists-section">
+      <div class="task-list-container">
+        <h3>Overdue</h3>
+        <ul id="overdue-task-list" class="task-list"></ul>
+      </div>
+      <div class="task-list-container">
+        <h3>Due Today</h3>
+        <ul id="today-task-list" class="task-list"></ul>
+      </div>
+      <div class="task-list-container">
+        <h3>To Do This Week</h3>
+        <ul id="week-task-list" class="task-list"></ul>
+      </div>
+      <div class="task-list-container">
+        <h3>Incoming Deadlines</h3>
+        <ul id="incoming-task-list" class="task-list"></ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="calendar-section">
+    <h2>Calendar</h2>
+    <div id="month-year-header"></div>
+
+    <div class="calendar-navigation">
+      <button id="prev-month-btn">Previous Month</button>
+      <button id="next-month-btn">Next Month</button>
+    </div>
+
+    <table id="calendar">
+      <thead>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="course-input-section">
+    <h2>Add Course Schedule</h2>
+    <input type="text" id="course-name" placeholder="Course name...">
+    <input type="time" id="course-start-time" placeholder="Start time...">
+    <input type="time" id="course-end-time" placeholder="End time...">
+    <input type="text" id="course-location" placeholder="Location (e.g., B107)...">
+    <select id="course-day">
+      <option value="Monday">Monday</option>
+      <option value="Tuesday">Tuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+      <option value="Saturday/Sunday">Saturday/Sunday</option>
+    </select>
+    <button id="add-course-btn">Add Course</button>
+  </section>
+
+  <section class="course-schedule-section">
+    <h2>Course Schedule</h2>
+    <div id="course-schedule">
+    </div>
+  </section>
+
+  <section class="grade-calculator-section">
+    <h2>Grade Calculator</h2>
+    <select id="grade-course-name">
+    </select>
+    <input type="text" id="assignment-name" placeholder="Assignment/Exam name...">
+    <input type="number" id="grade-received" placeholder="Grade received...">
+    <input type="number" id="weight" placeholder="Weight (%)...">
+    <button id="add-grade-btn">Add Grade</button>
+  </section>
+
+  <div id="edit-course-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-edit-course">&times;</span>
+      <h2>Edit Course</h2>
+      <input type="text" id="edit-course-name" placeholder="Course name...">
+      <input type="time" id="edit-course-start-time" placeholder="Start time...">
+      <input type="time" id="edit-course-end-time" placeholder="End time...">
+      <input type="text" id="edit-course-location" placeholder="Location (e.g., B107)...">
+      <select id="edit-course-day">
+        <option value="Monday">Monday</option>
+        <option value="Tuesday">Tuesday</option>
+        <option value="Wednesday">Wednesday</option>
+        <option value="Thursday">Thursday</option>
+        <option value="Friday">Friday</option>
+        <option value="Saturday/Sunday">Saturday/Sunday</option>
+      </select>
+      <button id="save-edit-course-btn">Save Changes</button>
+    </div>
+  </div>
+
+  <div id="course-grades-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-course-grades">&times;</span>
+      <h2>Course Grades</h2>
+      <h3>Current Grade: <span id="course-current-grade">0</span>%</h3>
+      <ul id="course-grade-list"></ul>
+    </div>
+  </div>
+
+  <div id="task-details-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Task Details</h2>
+      <textarea id="task-notes" placeholder="Add notes..."></textarea>
+      <button id="save-task-notes">Save</button>
+    </div>
+  </div>
+
+</body>
+</html>
