@@ -59,7 +59,8 @@ body {
 .sidebar h2
 {
 font-family: "Playfair Display";
-padding-bottom: 1em;
+font-size: 1.2em;
+padding-bottom: 0.5em;
 }
 
 .sidebar h3
@@ -74,7 +75,6 @@ padding-bottom: 1em;
 
 .task-list-container:nth-child(2) /* today */
 {
-  
   padding-top: 3em;
 }
 
@@ -309,3 +309,28 @@ margin-left: 10em;
   padding-left: 10px;
 }
 
+#task-input, #due-date-input
+{
+  background-color: #212121;
+  font-family: "Quicksand";
+  color: #8e8d8d;
+  border-radius: 0.3em;
+  margin-right: 0.2em;
+  margin-bottom: 0.3em;
+  border: currentColor;
+}
+
+/* calendar icon in input*/::-webkit-calendar-picker-indicator {
+  filter: invert(1)
+          brightness(50%)
+}
+
+#add-task-btn
+{
+  background-color: #212121;
+  font-family: "Quicksand";
+  color: #8e8d8d;
+  border: gray solid 0.1em;
+  border-radius: 0.3em;
+  margin-top: 0.3em;
+}
