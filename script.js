@@ -168,24 +168,38 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   //highlight today's date
-  function highlightToday() {
-    const today = new Date();
-    const todayDate = today.getDate();
-    const todayMonth = today.getMonth();
-    const todayYear = today.getFullYear();
-  
-    const calendarCells = document.querySelectorAll("#calendar td");
-    calendarCells.forEach((cell) => {
-      if (cell.textContent === todayDate.toString()) {
-        const cellDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), parseInt(cell.textContent));
-        if (cellDate.getDate() === todayDate && 
-            cellDate.getMonth() === todayMonth && 
-            cellDate.getFullYear() === todayYear) {
-          cell.classList.add("today");
-        }
+//highlight today's date
+function highlightToday() {
+  const today = new Date();
+  const todayDate = today.getDate();
+  const todayMonth = today.getMonth();
+  const todayYear = today.getFullYear();
+
+  const calendarCells = document.querySelectorAll("#calendar td");
+  calendarCells.forEach((cell) => {
+    // Remove any existing today class first
+    cell.classList.remove("today");
+    
+    if (cell.textContent === todayDate.toString()) 
+      {
+      const cellDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), parseInt(cell.textContent));
+      if (cellDate.getDate() === todayDate && 
+          cellDate.getMonth() === todayMonth && 
+          cellDate.getFullYear() === todayYear) 
+          {
+        cell.classList.add("today");
+        //circle styling
+        cell.style.border = "0.1em solid #cc4f4b";
+        cell.style.borderRadius = "100%";
+        cell.style.width = "0.3em";
+        cell.style.height = "0.2em";
+        cell.style.display = "flex";
+        cell.style.justifyContent = "center";      
+        cell.style.alignItems = "center";
       }
-    });
-  }
+    }
+  });
+}
 
   // render task lists
   function renderTaskLists() {
@@ -482,10 +496,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-//highlight today circle
-document.addEventListener("DOMContentLoaded", function () {
-  const today = new Date();
-
   // local date format
   const year = today.getFullYear();
   const month = String(today.getMonth() + 1).padStart(2, "0"); 
@@ -503,6 +513,6 @@ document.addEventListener("DOMContentLoaded", function () {
       tdElement.style.justifyContent = "center";      
       tdElement.style.alignItems = "center"; 
   }
-});
+
 
 
