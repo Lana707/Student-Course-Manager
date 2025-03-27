@@ -40,7 +40,6 @@
     --button-hover: #e8f4fc;
     --button-active: #d0e3f7;
     --calendar-icon: none;
-    --task-border: #e0e0e0;
     --modal-bg: #ffffff;
     --close-btn: #666666;
   }
@@ -50,7 +49,7 @@
 {
   --text: #333333;
   --bg: #fff;
-  --task-headings: #f8f8f6;
+  --task-headings: #dedede;
   --calendar-heading: #f0f0f0;
   --accent: #e8f4fc;
   --border: #e0e0e0;
@@ -61,7 +60,6 @@
   --button-hover: #e8f4fc;
   --button-active: #d0e3f7;
   --calendar-icon: none;
-  --task-border: #e0e0e0;
   --modal-bg: #ffffff;
   --close-btn: #666666;
 
@@ -87,7 +85,6 @@
   --button-hover: #aeaeae;
   --button-active: #666;
   --calendar-icon: invert(1) brightness(50%);
-  --task-border: #eee;
   --modal-bg: #fefefe;
   --close-btn: #aaa;
 }
@@ -380,7 +377,6 @@ button.close:hover, button.close-edit-course:hover, button.close-course-grades:h
   justify-content: space-between;
   align-items: center;
   padding: 0.5em 0;
-  border-bottom: 1px solid var(--task-border);
   padding-left: 0.3em;
 }
 
