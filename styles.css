@@ -377,3 +377,7 @@ padding-right: 0.25em;
   display: flex;
   gap: 5px;
 }
+
+.course-name {
+  font-weight: bold;
+}

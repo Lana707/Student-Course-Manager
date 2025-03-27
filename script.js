@@ -315,8 +315,15 @@ document.addEventListener('DOMContentLoaded', function() {
           //info container
           const courseInfo = document.createElement('div');
           courseInfo.classList.add('course-info');
-          courseInfo.textContent = `${course.name}: ${course.startTime} - ${course.endTime} ~ ${course.location}`;
-  
+          
+          const nameElement = document.createElement('span');
+          nameElement.classList.add('course-name');
+          nameElement.textContent = course.name;
+          
+          const detailsText = document.createTextNode(`: ${course.startTime} - ${course.endTime} ~ ${course.location}`);
+          
+          courseInfo.appendChild(nameElement);
+          courseInfo.appendChild(detailsText);
           //actions container
           const courseActions = document.createElement('div');
           courseActions.classList.add('course-actions');
