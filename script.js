@@ -256,11 +256,15 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   //open task details modal
-  function openTaskDetails(task) {
-    selectedTask = task;
-    taskNotes.value = task.notes || '';
-    modal.style.display = 'block';
-  }
+function openTaskDetails(task) 
+{
+  selectedTask = task;
+  const modal = document.getElementById('task-details-modal');
+  const header = document.getElementById('task-details-header');
+  header.textContent = `${task.name}`;
+  taskNotes.value = task.notes || '';
+  modal.style.display = 'block';
+}
 
   // close the modal
   closeModal.addEventListener('click', () => {
@@ -642,3 +646,4 @@ document.addEventListener('DOMContentLoaded', function()
       currentTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
   }
 });
+
