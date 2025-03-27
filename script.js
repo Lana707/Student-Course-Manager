@@ -371,10 +371,13 @@ document.addEventListener('DOMContentLoaded', function() {
   //update the grade course dropdown
   function updateGradeCourseDropdown() {
     gradeCourseNameSelect.innerHTML = '';
-    courses.forEach(course => {
+    
+    const uniqueCourseNames = [...new Set(courses.map(course => course.name))];
+    
+    uniqueCourseNames.forEach(courseName => {
       const option = document.createElement('option');
-      option.value = course.name;
-      option.textContent = course.name;
+      option.value = courseName;
+      option.textContent = courseName;
       gradeCourseNameSelect.appendChild(option);
     });
   }
@@ -398,11 +401,20 @@ document.addEventListener('DOMContentLoaded', function() {
   //save changes to the course
   saveEditCourseBtn.addEventListener('click', function() {
     if (selectedCourse) {
+      const oldName = selectedCourse.name;
       selectedCourse.name = editCourseNameInput.value.trim();
       selectedCourse.startTime = editCourseStartTimeInput.value.trim();
       selectedCourse.endTime = editCourseEndTimeInput.value.trim();
       selectedCourse.location = editCourseLocationInput.value.trim();
       selectedCourse.day = editCourseDayInput.value;
+      
+      // Update all instances if name changed
+      if (oldName !== selectedCourse.name) {
+        courses.filter(c => c.name === oldName).forEach(c => {
+          c.name = selectedCourse.name;
+        });
+      }
+      
       renderCourseSchedule();
       editCourseModal.style.display = 'none';
     }
@@ -410,6 +422,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //remove a course
   function removeCourse(course) {
+    const remainingInstances = courses.filter(c => 
+      c.name === course.name && c !== course
+    );
+    
+    if (remainingInstances.length === 0) {
+      course.grades = [];
+    }
+    
     courses = courses.filter(c => c !== course);
     renderCourseSchedule();
   }
@@ -421,36 +441,55 @@ document.addEventListener('DOMContentLoaded', function() {
     const courseEndTime = courseEndTimeInput.value.trim();
     const courseLocation = courseLocationInput.value.trim();
     const courseDay = courseDayInput.value;
-
+  
     if (courseName !== '' && courseStartTime !== '' && courseEndTime !== '' && courseLocation !== '') {
-      courses.push({ 
-        name: courseName, 
-        startTime: courseStartTime, 
-        endTime: courseEndTime, 
-        location: courseLocation, 
-        day: courseDay, 
-        grades: [] 
-      });
-      courseNameInput.value = '';
-      courseStartTimeInput.value = '';
-      courseEndTimeInput.value = '';
-      courseLocationInput.value = '';
-      renderCourseSchedule();
+      const existingInstance = courses.find(c => 
+        c.name.toLowerCase() === courseName.toLowerCase() &&
+        c.day === courseDay &&
+        c.startTime === courseStartTime &&
+        c.endTime === courseEndTime &&
+        c.location === courseLocation
+      );
+      
+      if (!existingInstance) {
+        const existingCourse = courses.find(c => c.name.toLowerCase() === courseName.toLowerCase());
+        
+        const sharedGrades = existingCourse ? existingCourse.grades : [];
+        
+        courses.push({ 
+          name: courseName, 
+          startTime: courseStartTime, 
+          endTime: courseEndTime, 
+          location: courseLocation, 
+          day: courseDay, 
+          grades: sharedGrades
+        });
+        
+        courseNameInput.value = '';
+        courseStartTimeInput.value = '';
+        courseEndTimeInput.value = '';
+        courseLocationInput.value = '';
+        
+        renderCourseSchedule();
+      }
     }
   });
 
   //calculate and update the current grade
   function updateCurrentGrade(course) {
+    if (!course.grades || course.grades.length === 0) return "0.00";
+    
     let totalWeight = 0;
-    let weightedGradesSum = 0;
-
+    let weightedSum = 0;
+    
     course.grades.forEach(grade => {
       totalWeight += grade.weight;
-      weightedGradesSum += grade.grade * (grade.weight / 100);
+      weightedSum += (grade.grade * grade.weight);
     });
-
-    const currentGrade = totalWeight > 0 ? (weightedGradesSum / totalWeight) * 100 : 0;
-    return currentGrade.toFixed(2);
+    
+    // no division by zero
+    const finalGrade = totalWeight > 0 ? (weightedSum / totalWeight) : 0;
+    return finalGrade.toFixed(2);
   }
 
   // render the grade list for a course
@@ -489,22 +528,57 @@ document.addEventListener('DOMContentLoaded', function() {
     const assignmentName = assignmentNameInput.value.trim();
     const gradeReceived = parseFloat(gradeReceivedInput.value);
     const weight = parseFloat(weightInput.value);
-
+  
     if (courseName !== '' && assignmentName !== '' && !isNaN(gradeReceived) && !isNaN(weight) && weight <= 100 && weight > 0) {
-      const course = courses.find(c => c.name === courseName);
-      course.grades.push({ name: assignmentName, grade: gradeReceived, weight: weight });
-      assignmentNameInput.value = '';
-      gradeReceivedInput.value = '';
-      weightInput.value = '';
-      renderCourseGradeList(course);
+
+      const matchingCourses = courses.filter(c => c.name === courseName);
+      
+      if (matchingCourses.length > 0) {
+
+        const firstCourse = matchingCourses[0];
+        
+        // assignment already exists
+        const existingGradeIndex = firstCourse.grades.findIndex(
+          g => g.name.toLowerCase() === assignmentName.toLowerCase()
+        );
+        
+        if (existingGradeIndex >= 0) {
+          // existing grade
+          firstCourse.grades[existingGradeIndex].grade = gradeReceived;
+          firstCourse.grades[existingGradeIndex].weight = weight;
+        } else {
+          // new grade
+          firstCourse.grades.push({ 
+            name: assignmentName, 
+            grade: gradeReceived, 
+            weight: weight 
+          });
+        }
+        
+        // Clear inputs
+        assignmentNameInput.value = '';
+        gradeReceivedInput.value = '';
+        weightInput.value = '';
+        
+        // If grades modal is open for this course, update it
+        if (selectedCourse && selectedCourse.name === courseName) {
+          renderCourseGradeList(selectedCourse);
+        }
+      }
     }
   });
 
   //function to open the course grades modal
   function openCourseGradesModal(course) {
     selectedCourse = course;
-    renderCourseGradeList(course);
-    courseGradesModal.style.display = 'block';
+    
+    //find the first instance of course 
+    const firstInstance = courses.find(c => c.name === course.name);
+    
+    if (firstInstance) {
+      renderCourseGradeList(firstInstance);
+      courseGradesModal.style.display = 'block';
+    }
   }
 
   //function close the course grades modal
