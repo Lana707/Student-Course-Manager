@@ -605,3 +605,40 @@ document.addEventListener('DOMContentLoaded', function() {
   renderCalendar();
   renderCourseSchedule();
 });
+
+document.addEventListener('DOMContentLoaded', function()
+ {
+  const themeToggle = document.getElementById('theme-toggle');
+  
+  // check saved theme preference or use system preference
+  const savedTheme = localStorage.getItem('theme');
+  const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    if (savedTheme) 
+      {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+      } else 
+        {
+    document.documentElement.setAttribute('data-theme', systemPrefersLight ? 'light' : 'dark');
+        }
+    updateThemeIcon();
+  
+  //toggle theme on click
+  themeToggle.addEventListener('click', function() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon();
+  });
+  
+  //update theme toggle icon
+  function updateThemeIcon() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const icon = themeToggle.querySelector('i');
+    if (icon) {
+      icon.className = currentTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+    }
+    themeToggle.setAttribute('aria-label', 
+      currentTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+  }
+});
