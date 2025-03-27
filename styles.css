@@ -359,19 +359,3 @@ margin-right:0.3em ;
 {
   cursor: pointer;
 }
-
-.course-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px;
-  margin: 4px 0;
-  border-radius: 4px;
-}
-
-
-
-.course-actions {
-  display: flex;
-  gap: 5px;
-}
