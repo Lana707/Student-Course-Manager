@@ -286,20 +286,20 @@ margin-left: 10em;
   border-bottom: none;
 }
 
-.remove-course-btn
-{
-  background-color: transparent;
-  border: none;
-  color: red;
-  font-weight: bold;
-  cursor: pointer;
-  padding-left: 10px;
-}
 
-.remove-task-btn 
+
+.remove-task-btn, .remove-course-btn 
 {
 cursor: pointer;
 padding-right: 0.25em;
+}
+
+.remove-course-btn 
+{
+  padding-top: 0.5em;
+  border: none;
+  background-color: transparent;
+  color:white ;
 }
 
 #task-input, #due-date-input, #course-name, #course-start-time, #course-end-time, #course-location, #course-day, #add-course-btn, #grade-course-name, #assignment-name, #grade-received, #weight, #add-grade-btn
@@ -320,7 +320,7 @@ padding-right: 0.25em;
           brightness(50%)
 }
 
-#add-task-btn, #prev-month-btn, #next-month-btn, #add-course-btn
+#add-task-btn, #prev-month-btn, #next-month-btn, #add-course-btn, .view-grades-btn, .edit-course-btn
 {
   background-color: #212121;
   font-family: "Quicksand";
@@ -342,13 +342,14 @@ margin-right:0.3em ;
   margin-bottom: 0.5em;
 }
 
-#add-task-btn:hover, #prev-month-btn:hover, #next-month-btn:hover, #add-course-btn:hover
+#add-task-btn:hover, #prev-month-btn:hover, #next-month-btn:hover, #add-course-btn:hover, .view-grades-btn:hover, .edit-course-btn:hover
+
 {
   color: #191919;
   background-color: #aeaeae
 }
 
-#add-task-btn:active, #prev-month-btn:active, #next-month-btn:active, #add-course-btn:active 
+#add-task-btn:active, #prev-month-btn:active, #next-month-btn:active, #add-course-btn:active, .view-grades-btn:active, .edit-course-btn:active 
 {
   box-shadow: 0 0.1em #666;
   transform: translateY(0.1em);
@@ -357,4 +358,20 @@ margin-right:0.3em ;
 #calendar li
 {
   cursor: pointer;
+}
+
+.course-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  margin: 4px 0;
+  border-radius: 4px;
+}
+
+
+
+.course-actions {
+  display: flex;
+  gap: 5px;
 }

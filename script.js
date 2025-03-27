@@ -295,32 +295,40 @@ document.addEventListener('DOMContentLoaded', function() {
   //render the course schedule
   function renderCourseSchedule() {
     courseSchedule.innerHTML = '';
-
+  
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday/Sunday'];
     days.forEach(day => {
       const dayCourses = courses.filter(course => course.day === day);
-
+  
       if (dayCourses.length > 0) {
         const daySection = document.createElement('div');
         daySection.classList.add('course-day');
-
+  
         const dayHeader = document.createElement('h3');
         dayHeader.textContent = day;
         daySection.appendChild(dayHeader);
-
+  
         dayCourses.forEach(course => {
           const courseItem = document.createElement('div');
           courseItem.classList.add('course-item');
-          courseItem.textContent = `${course.name}: ${course.startTime} - ${course.endTime} ~ ${course.location}`;
-
+  
+          //info container
+          const courseInfo = document.createElement('div');
+          courseInfo.classList.add('course-info');
+          courseInfo.textContent = `${course.name}: ${course.startTime} - ${course.endTime} ~ ${course.location}`;
+  
+          //actions container
+          const courseActions = document.createElement('div');
+          courseActions.classList.add('course-actions');
+  
           const viewGradesBtn = document.createElement('button');
           viewGradesBtn.textContent = 'View Grades';
           viewGradesBtn.classList.add('view-grades-btn');
           viewGradesBtn.addEventListener('click', (event) => {
-            event.stopPropagation(); // prevent the course details modal from opening
+            event.stopPropagation();
             openCourseGradesModal(course);
           });
-
+  
           const editBtn = document.createElement('button');
           editBtn.textContent = 'Edit';
           editBtn.classList.add('edit-course-btn');
@@ -328,25 +336,28 @@ document.addEventListener('DOMContentLoaded', function() {
             event.stopPropagation();
             openEditCourseModal(course);
           });
-
-          const removeBtn = document.createElement('span');
+  
+          const removeBtn = document.createElement('button');
           removeBtn.textContent = 'x';
           removeBtn.classList.add('remove-course-btn');
           removeBtn.addEventListener('click', (event) => {
-            event.stopPropagation(); // prevent the course details modal from opening
+            event.stopPropagation();
             removeCourse(course);
           });
-
-          courseItem.appendChild(viewGradesBtn);
-          courseItem.appendChild(editBtn);
-          courseItem.appendChild(removeBtn);
+  
+          courseActions.appendChild(viewGradesBtn);
+          courseActions.appendChild(editBtn);
+          courseActions.appendChild(removeBtn);
+  
+          courseItem.appendChild(courseInfo);
+          courseItem.appendChild(courseActions);
           daySection.appendChild(courseItem);
         });
-
+  
         courseSchedule.appendChild(daySection);
       }
     });
-
+  
     updateGradeCourseDropdown();
   }
 
