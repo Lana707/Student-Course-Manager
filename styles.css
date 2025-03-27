@@ -128,21 +128,21 @@ padding-bottom: 0.5em;
   padding-top: 2em;
 }
 
-.course-input-section h2
+.course-input-section h2, .course-schedule-section h2
 {
   font-family: "Playfair Disiplay";
   margin-bottom: 1em;
   font-size: 1.2em;
-
 }
 
-.course-schedule-section {
+.course-schedule-section 
+{
   grid-area: schedule;
   padding: 1em;
-  border-top: 1px solid #ddd;
 }
 
-.grade-calculator-section {
+.grade-calculator-section 
+{
   grid-area: calculator;
   padding: 1em;
   border-top: 1px solid #ddd;
@@ -273,8 +273,9 @@ button.close:hover, button.close-edit-course:hover, button.close-course-grades:h
   display: flex;
   align-items: center;
   padding: 0.5em 0;
-  border-bottom: 1px solid #eee;
 }
+
+
 
 .course-item .view-grades-btn
 {
@@ -315,7 +316,9 @@ padding-right: 0.25em;
 
 
 
-/* calendar icon in input*/::-webkit-calendar-picker-indicator {
+/* calendar icon in input*/
+::-webkit-calendar-picker-indicator 
+{
   filter: invert(1)
           brightness(50%)
 }
@@ -334,7 +337,7 @@ padding-right: 0.25em;
 .calendar-navigation, #month-year-header
 {
   text-align: right;
-margin-right:0.3em ;
+  margin-right:0.3em ;
 }
 
 .calendar-navigation
@@ -360,7 +363,8 @@ margin-right:0.3em ;
   cursor: pointer;
 }
 
-.course-item {
+.course-item 
+{
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -368,7 +372,8 @@ margin-right:0.3em ;
   margin: 4px 0;
 }
 
-.course-actions {
+.course-actions
+ {
   display: flex;
   gap: 5px;
 }
