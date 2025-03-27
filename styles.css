@@ -120,10 +120,20 @@ padding-bottom: 0.5em;
 
 }
 
-.course-input-section {
+.course-input-section 
+{
   grid-area: course-input;
   padding: 1em;
-  border-top: 1px solid #ddd;
+  margin-top: 1em;
+  padding-top: 2em;
+}
+
+.course-input-section h2
+{
+  font-family: "Playfair Disiplay";
+  margin-bottom: 1em;
+  font-size: 1.2em;
+
 }
 
 .course-schedule-section {
@@ -192,8 +202,6 @@ padding-bottom: 0.5em;
 #edit-course-modal .close-edit-course:hover {
   color: black;
 }
-
-
 
 #calendar td.today data-date
 {
@@ -294,7 +302,7 @@ cursor: pointer;
 padding-right: 0.25em;
 }
 
-#task-input, #due-date-input
+#task-input, #due-date-input, #course-name, #course-start-time, #course-end-time, #course-location, #course-day, #add-course-btn, #grade-course-name, #assignment-name, #grade-received, #weight, #add-grade-btn
 {
   background-color: #212121;
   font-family: "Quicksand";
@@ -312,7 +320,7 @@ padding-right: 0.25em;
           brightness(50%)
 }
 
-#add-task-btn, #prev-month-btn, #next-month-btn
+#add-task-btn, #prev-month-btn, #next-month-btn, #add-course-btn
 {
   background-color: #212121;
   font-family: "Quicksand";
@@ -334,13 +342,13 @@ margin-right:0.3em ;
   margin-bottom: 0.5em;
 }
 
-#add-task-btn:hover, #prev-month-btn:hover, #next-month-btn:hover 
+#add-task-btn:hover, #prev-month-btn:hover, #next-month-btn:hover, #add-course-btn:hover
 {
   color: #191919;
   background-color: #aeaeae
 }
 
-#add-task-btn:active, #prev-month-btn:active, #next-month-btn:active 
+#add-task-btn:active, #prev-month-btn:active, #next-month-btn:active, #add-course-btn:active 
 {
   box-shadow: 0 0.1em #666;
   transform: translateY(0.1em);
