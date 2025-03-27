@@ -370,6 +370,7 @@ padding-right: 0.25em;
   align-items: center;
   padding: 8px;
   margin: 4px 0;
+  font-family: "Times New Roman";
 }
 
 .course-actions
@@ -378,6 +379,17 @@ padding-right: 0.25em;
   gap: 5px;
 }
 
-.course-name {
-  font-weight: bold;
+
+.course-name 
+{
+  font-weight: 600;
+}
+
+.course-schedule-section h3
+{
+  border: solid #113b4e;
+background-color: #113b4e;
+font-weight: 600;
+  padding: 0.5em;
+  margin-right: 0.8em;
 }
