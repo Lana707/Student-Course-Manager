@@ -128,7 +128,7 @@ padding-bottom: 0.5em;
   padding-top: 2em;
 }
 
-.course-input-section h2, .course-schedule-section h2
+.course-input-section h2, .course-schedule-section h2, .grade-calculator-section h2
 {
   font-family: "Playfair Disiplay";
   margin-bottom: 1em;
@@ -145,7 +145,6 @@ padding-bottom: 0.5em;
 {
   grid-area: calculator;
   padding: 1em;
-  border-top: 1px solid #ddd;
 }
 
 .modal {
@@ -323,7 +322,7 @@ padding-right: 0.25em;
           brightness(50%)
 }
 
-#add-task-btn, #prev-month-btn, #next-month-btn, #add-course-btn, .view-grades-btn, .edit-course-btn
+#add-task-btn, #prev-month-btn, #next-month-btn, #add-course-btn, .view-grades-btn, .edit-course-btn, #add-grade-btn
 {
   background-color: #212121;
   font-family: "Quicksand";
@@ -345,14 +344,14 @@ padding-right: 0.25em;
   margin-bottom: 0.5em;
 }
 
-#add-task-btn:hover, #prev-month-btn:hover, #next-month-btn:hover, #add-course-btn:hover, .view-grades-btn:hover, .edit-course-btn:hover
+#add-task-btn:hover, #prev-month-btn:hover, #next-month-btn:hover, #add-course-btn:hover, .view-grades-btn:hover, .edit-course-btn:hover, #add-grade-btn:hover
 
 {
   color: #191919;
   background-color: #aeaeae
 }
 
-#add-task-btn:active, #prev-month-btn:active, #next-month-btn:active, #add-course-btn:active, .view-grades-btn:active, .edit-course-btn:active 
+#add-task-btn:active, #prev-month-btn:active, #next-month-btn:active, #add-course-btn:active, .view-grades-btn:active, .edit-course-btn:active, #add-grade-btn:active 
 {
   box-shadow: 0 0.1em #666;
   transform: translateY(0.1em);
