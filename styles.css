@@ -236,7 +236,7 @@ body {
   padding-top: 2em;
 }
 
-.course-input-section h2, .course-schedule-section h2, .grade-calculator-section h2 
+.course-input-section h2, .course-schedule-section h2, .grade-calculator-section h2, #course-grades-modal h2 
 {
   font-family: var(--font-heading);
   margin-bottom: 1em;
@@ -279,7 +279,7 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.close 
+.close
 {
 
   float: right;
@@ -374,11 +374,6 @@ button.close, button.close-edit-course, button.close-course-grades
   cursor: pointer;
 }
 
-button.close:hover, button.close-edit-course:hover, button.close-course-grades:hover 
-{
-  color: red;
-}
-
 .task-list li 
 {
   display: flex;
@@ -416,7 +411,7 @@ button.close:hover, button.close-edit-course:hover, button.close-course-grades:h
   padding-right: 0.25em;
 }
 
-.remove-course-btn 
+.remove-course-btn, .remove-grade-btn 
 {
   padding-top: 0.5em;
   border: none;
@@ -424,7 +419,10 @@ button.close:hover, button.close-edit-course:hover, button.close-course-grades:h
   color: var(--text);
 }
 
-#task-input, #due-date-input, #course-name, #course-start-time, #course-end-time, #course-location, #course-day, #add-course-btn, #grade-course-name, #assignment-name, #grade-received, #weight, #add-grade-btn 
+
+#task-input, #due-date-input, #course-name, #course-start-time, #course-end-time, #course-location, #course-day, #add-course-btn, #grade-course-name, #assignment-name, #grade-received, #weight, #add-grade-btn, #edit-course-name, #edit-course-end-time, #edit-course-location, #edit-course-start-time, #edit-course-day
+
+ 
 {
   background-color: var(--input-bg);
   font-family: var(--font-secondary);
@@ -442,7 +440,7 @@ button.close:hover, button.close-edit-course:hover, button.close-course-grades:h
   filter: var(--calendar-icon);
 }
 
-#add-task-btn, #prev-month-btn, #next-month-btn, #add-course-btn, .view-grades-btn, .edit-course-btn, #add-grade-btn, #save-task-notes 
+#add-task-btn, #prev-month-btn, #next-month-btn, #add-course-btn, .view-grades-btn, .edit-course-btn, #add-grade-btn, #save-task-notes, #save-edit-course-btn 
 {
   background-color: var(--button-bg);
   font-family: var(--font-secondary);
@@ -536,4 +534,40 @@ background-color: var(--accent);
   background-color:  var(--modal-box);
   padding: 2em;
   border:none;
+}
+
+#course-grades-modal
+{
+font-family: var(--font-primary);
+}
+
+span.remove-grade-btn
+{
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+  float: inline-end;
+  cursor: pointer;
+  color: var(--close-btn);
+}
+
+span.remove-grade-btn:hover
+{
+color: var(--text);
+}
+
+#edit-course-name, #edit-course-end-time, #edit-course-location
+{
+  margin-bottom: 1em;
+}
+
+#edit-course-start-time
+{
+  margin-bottom: 0.2em;
+}
+
+.modal-content h3
+{
+padding-bottom: 0.5em;
+font-weight: 600;
 }
